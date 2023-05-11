@@ -5,6 +5,7 @@ const axios = require("axios"); //1
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 app.get("/characters", async (req, res) => {
 	try {
@@ -13,12 +14,10 @@ app.get("/characters", async (req, res) => {
 		const limit = req.query.limit || "100";
 
 		const response = await axios.get(
-			//1
-			`https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}&name=${name}&skip=${skip}&limit=${limit}`
-		);
-		console.log(response.data);
-		// *********************ENVOI AU FRONT
-		res.json(response.data); // reponse au front
+			//1******Requet du Front******
+			// console.log(response.data);
+			res.json(response.data)
+		); // 2***reponse au front
 		// *********************ENVOI AU FRONT
 	} catch (error) {
 		res.status(500).json({message: error.message});
