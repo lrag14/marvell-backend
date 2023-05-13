@@ -16,6 +16,7 @@ app.get("/personnages", async (req, res) => {
     const response = await axios.get(
       `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}&name=${name}&limit=${limit}&skip=${skip}`
     );
+    // console.log(response.data);
     res.json(response.data);
   } catch (error) {
     res.status(404).json({ message: "catchError" });
