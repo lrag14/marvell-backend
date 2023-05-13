@@ -40,6 +40,16 @@ app.get("/comics", async (req, res) => {
   }
 });
 
+// // *******POST UTILISATEUR ************
+
+// app.post("/user", async (req, res) => {
+//   try {
+//
+//   } catch (error) {
+//     res.status(404).json({ message: "catchError Comics" });
+//   }
+// });
+
 app.all("*", (req, res) => {
   res.status(404).json({ message: "route absente" });
 });
