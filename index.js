@@ -1,48 +1,49 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const axios = require("axios");
-const fileUpload = require("express-fileupload");
-const dotenv = require("dotenv");
-const isAuthenticated = require("./middleswares/isAuthenticated.js");
-
 const app = express();
-dotenv.config();
+const axios = require("axios");
+
 app.use(cors());
-app.use(express.json());
 
-app.use(fileUpload());
-
-// GET CHARACTERS****************
-app.get("/characters", async (req, res) => {
+// *******GET*****PERSONNAGES************
+app.get("/personnages", async (req, res) => {
   try {
     const name = req.query.name || "";
     const skip = req.query.skip || "0";
     const limit = req.query.limit || "100";
+
     const response = await axios.get(
-      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}&name=${name}&skip=${skip}&limit=${limit}`
+      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}&name=${name}&limit=${limit}&skip=${skip}`
     );
     res.json(response.data);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(404).json({ message: "catchError" });
   }
 });
 
-// UPLOAD FILES **************************
-app.post("/upload", isAuthenticated, async (req, res) => {
+// *******GET*****COMICSBD************
+
+app.get("/comics", async (req, res) => {
   try {
-    // *****RECUPERER LE TOKEN******MIDDLEWAIRES********POST********
-    res.json({ message: "File uploaded" });
+    const title = req.query.title || "";
+    const skip = req.query.skip || "0";
+    const limit = req.query.limit || "100";
+
+    const response = await axios.get(
+      `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}&title=${title}&limit=${limit}&skip=${skip}`
+    );
+
+    res.json(response.data);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(404).json({ message: "catchError Comics" });
   }
 });
 
-// OTHER PAGES
 app.all("*", (req, res) => {
-  res.status(404).json({ message: "Not found" });
+  res.status(404).json({ message: "route absente" });
 });
 
-// START SERVER
 app.listen(process.env.PORT, () => {
-  console.log(`Server listening on port ${process.env.PORT}`);
+  console.log("Server OP");
 });
