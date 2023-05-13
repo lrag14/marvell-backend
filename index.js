@@ -7,7 +7,7 @@ const axios = require("axios");
 app.use(cors());
 
 // *******GET*****PERSONNAGES************
-app.get("/personnages", async (req, res) => {
+app.get("/characters", async (req, res) => {
   try {
     const name = req.query.name || "";
     const skip = req.query.skip || "0";
