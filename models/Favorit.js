@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
 
-const Favorite = mongoose.model({
-   user: {
-      type: mongoose.Schema.Types.ObjectId, //RECUPERE ID USER
-      ref: 'User',
+const Favorite = mongoose.model('Favorite', {
+   name: String,
+   description: {
+      type: String,
    },
-   characterId: Number,
-   comicId: Number,
+   image: {
+      type: String,
+   },
+   characterId: String,
+   userId: String,
 });
 
 module.exports = Favorite;

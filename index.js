@@ -18,7 +18,7 @@ app.get('/characters', async (req, res) => {
       const name = req.query.name || '';
 
       const response = await axios.get(
-         `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}&name=${name}&limit=${limit}&skip=${skip}`
+         `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${process.env.API_KEY}&name=${name}&limit=${limit}&skip=${skip}`,
       );
       res.json(response.data); // console.log OP 👍
    } catch (error) {
@@ -39,7 +39,7 @@ app.get('/comics', async (req, res) => {
       const title = req.query.title || '';
 
       const response = await axios.get(
-         `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}&title=${title}&limit=${limit}&skip=${skip}`
+         `https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${process.env.API_KEY}&title=${title}&limit=${limit}&skip=${skip}`,
       );
       res.json(response.data); // console.log OP 👍
    } catch (error) {
@@ -59,7 +59,7 @@ app.get('/comics/:characterId', async (req, res) => {
       const characterId = req.params.characterId; //
 
       const response = await axios.get(
-         `https://lereacteur-marvel-api.herokuapp.com/comics/${characterId}?apiKey=${process.env.API_KEY}`
+         `https://lereacteur-marvel-api.herokuapp.com/comics/${characterId}?apiKey=${process.env.API_KEY}`,
       );
       // console.log(response.data); OP 👍
       res.json(response.data);
@@ -77,7 +77,7 @@ app.get(`/comic/comicId`, async (req, res) => {
       // // apiKey	API key
       const comicId = req.params.comicId;
       const response = await axios.get(
-         `https://lereacteur-marvel-api.herokuapp.com/${comicId}/?apiKey=${process.env.API_KEY}`
+         `https://lereacteur-marvel-api.herokuapp.com/${comicId}/?apiKey=${process.env.API_KEY}`,
       );
 
       res.json(response.data); // 👍
@@ -98,7 +98,7 @@ app.get(`/character/:characterId`, async (req, res) => {
    try {
       const characterId = req.params.characterId;
       const response = await axios.get(
-         `https://lereacteur-marvel-api.herokuapp.com/character/${characterId}?apiKey=${process.env.API_KEY}`
+         `https://lereacteur-marvel-api.herokuapp.com/character/${characterId}?apiKey=${process.env.API_KEY}`,
       );
 
       res.json(response.data);
